@@ -5,8 +5,8 @@ def search(request):
     if request.method == "POST":
         host_name = request.POST.get("host_name")
         try:
-            sanitizer = shlex.quote(host_name)
-            to_execute = "ping -c1 {}".format(sanitizer)
+            #sanitizer = shlex.quote(host_name)
+            to_execute = "ping -c1 {}".format(host_name)
             output =  subprocess.check_output(to_execute, shell=True, encoding='UTF-8')
             return render(request, 'os_command_search.html', {'output':output,'host_name':host_name})
         except subprocess.CalledProcessError:
